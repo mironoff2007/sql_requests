@@ -19,12 +19,14 @@ public class ShopController {
 
     @PersistenceContext
     private EntityManager em;
+    private Object name;
 
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
         System.out.println("ShopController ready");
         addShops();
         doQuery();
+        doInnerJoinQuery();
     }
     public void addShops() {
         ArrayList<Shop> customerList= new  ArrayList<>();
@@ -41,5 +43,11 @@ public class ShopController {
 
     public void doQuery(){
         em.createNativeQuery("Select * from shops ",Shop.class).getResultList().forEach(v->  System.out.println(v));
+    }
+    public void doInnerJoinQuery()
+    {
+        em.createNativeQuery(" Select Distinct shops.name"
+                            +" From shops,customers"
+                            +" Where shops.city=customers.city").getResultList().forEach(v-> {name = v;System.out.println(name);});
     }
 }
