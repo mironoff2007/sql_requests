@@ -64,7 +64,4 @@ public class AnswerController {
 
     }
 
-    public static void PrintStuff() {
-        System.out.println("Answer controller");
-    }
-}
+   }

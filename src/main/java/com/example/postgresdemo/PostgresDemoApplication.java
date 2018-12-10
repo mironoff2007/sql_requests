@@ -1,8 +1,6 @@
 package com.example.postgresdemo;
 
-import com.example.postgresdemo.controller.AnswerController;
 import com.example.postgresdemo.controller.CustomerController;
-import com.example.postgresdemo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +14,7 @@ public class PostgresDemoApplication {
     @Autowired CustomerController customerController;
 	public static void main(String[] args) {
 		SpringApplication.run(PostgresDemoApplication.class, args);
-        AnswerController.PrintStuff();
+
 
 	}
 
