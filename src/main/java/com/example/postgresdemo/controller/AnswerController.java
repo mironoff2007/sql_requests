@@ -63,4 +63,8 @@ public class AnswerController {
                 }).orElseThrow(() -> new ResourceNotFoundException("Answer not found with id " + answerId));
 
     }
+
+    public static void PrintStuff() {
+        System.out.println("Answer controller");
+    }
 }
