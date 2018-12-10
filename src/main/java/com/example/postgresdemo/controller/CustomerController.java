@@ -43,7 +43,7 @@ public class CustomerController {
     }
 
     public void doQuery(){
+        System.out.println();
         em.createNativeQuery("Select * from customers ",Customer.class).getResultList().forEach(v->  System.out.println(v));
-
     }
 }

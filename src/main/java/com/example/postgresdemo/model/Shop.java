@@ -13,7 +13,7 @@ public class Shop {
     private Long id;
 
     @Column(columnDefinition = "name")
-    private String name;
+    private String shop_name;
 
     @Column(columnDefinition = "text")
     private String city;
@@ -30,11 +30,11 @@ public class Shop {
     }
 
     public String getName() {
-        return name;
+        return shop_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String shop_name) {
+        this.shop_name = shop_name;
     }
 
     public String getCity() {
@@ -53,9 +53,9 @@ public class Shop {
         this.rating = rating;
     }
 
-    public Shop(Long id,String name,String city,int rating) {
+    public Shop(Long id,String shop_name,String city,int rating) {
         this.id = id;
-        this.name = name;
+        this.shop_name = shop_name;
         this.city = city;
         this.rating = rating;
     }
@@ -68,7 +68,7 @@ public class Shop {
     public String toString() {
         return "Shop{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", shop_name='" + shop_name + '\'' +
                 ", city='" + city + '\'' +
                 ", rating=" + rating +
                 '}';

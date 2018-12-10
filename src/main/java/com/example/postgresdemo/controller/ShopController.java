@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ShopController {
@@ -42,12 +43,23 @@ public class ShopController {
     }
 
     public void doQuery(){
+        System.out.println();
         em.createNativeQuery("Select * from shops ",Shop.class).getResultList().forEach(v->  System.out.println(v));
     }
     public void doInnerJoinQuery()
     {
-        em.createNativeQuery(" Select Distinct shops.name"
-                            +" From shops,customers"
-                            +" Where shops.city=customers.city").getResultList().forEach(v-> {name = v;System.out.println(name);});
+        System.out.println();
+        System.out.println("Shops-Customers INNER JOIN");
+
+        List<Object[]> listQuery=em.createNativeQuery(" Select shops.shop_name,customers.name" +
+                " From shops\n" +
+                " INNER JOIN customers \n" +
+                " ON shops.city=customers.city").getResultList();
+        System.out.println();
+        for (Object[] obj : listQuery) {
+            System.out.print(obj[0].toString());
+            System.out.print(" | "+obj[1].toString());
+            System.out.println();
+        }
     }
 }
