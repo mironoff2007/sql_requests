@@ -30,10 +30,10 @@ public class CustomerController {
         ArrayList<Customer> customerList= new  ArrayList<>();
         customerList.add(new Customer((long) 1,"Customer1","City1"));
         customerList.add(new Customer((long) 2,"Customer2","City2",2));
-        customerList.add(new Customer((long) 3,"Customer2"));
-        customerList.add(new Customer((long) 4,"Customer5","City1"));
-        customerList.add(new Customer((long) 5,"Customer6","City2",2));
-        customerList.add(new Customer((long) 6,"Customer7"));
+        customerList.add(new Customer((long) 3,"Customer3"));
+        customerList.add(new Customer((long) 4,"Customer4","City1"));
+        customerList.add(new Customer((long) 5,"Customer5","City2",2));
+        customerList.add(new Customer((long) 6,"Customer6"));
 
 
 
