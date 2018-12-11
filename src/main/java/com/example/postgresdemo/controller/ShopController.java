@@ -2,6 +2,7 @@ package com.example.postgresdemo.controller;
 
 import com.example.postgresdemo.model.Shop;
 import com.example.postgresdemo.repository.ShopRepository;
+import com.example.postgresdemo.util.QueryPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -22,8 +23,11 @@ public class ShopController {
     private EntityManager em;
     private Object name;
 
+    private QueryPrinter printer;
+
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
+        printer = new QueryPrinter();
         System.out.println("ShopController ready");
         addShops();
         doQuery();
@@ -45,47 +49,30 @@ public class ShopController {
 
     public void doQuery(){
         System.out.println();
-        em.createNativeQuery("Select city from shops ").getResultList().forEach(v->  System.out.println(v));
+        printer.printResult("Select city from shops ",em);
+
     }
     public void doInnerJoinQuery()
     {
         System.out.println();
         System.out.println("Shops-Customers INNER JOIN");
 
-        List<Object[]> listQuery=em.createNativeQuery(" Select shops.shop_name,customers.name" +
+        printer.printResult(" Select shops.shop_name,customers.name" +
                 " From shops\n" +
                 " INNER JOIN customers \n" +
-                " ON shops.city=customers.city").getResultList();
-        System.out.println();
-        for (Object[] obj : listQuery) {
-            System.out.print(obj[0]);
-            System.out.print(" | "+obj[1]);
-            System.out.println();
-        }
+                " ON shops.city=customers.city",em);
+
     }
     public void doLeftJoinQuery()
     {
         System.out.println();
         System.out.println("Shops-Customers LEFT JOIN");
 
-        List<Object[]> listQuery=em.createNativeQuery(" Select shops.shop_name,customers.name" +
+        printer.printResult(" Select shops.shop_name,customers.name" +
                 " From shops\n" +
                 " Left JOIN customers \n" +
-                " ON shops.city=customers.city").getResultList();
-        System.out.println();
+                " ON shops.city=customers.city",em);
 
-        for (Object[] obj : listQuery) {
-            for(int i=0;i<2;i++) {
-                if(obj[i]!=null) {
-                    System.out.print(obj[i]);
-                }
-                else{
-                    System.out.print("null");
-                }
-                System.out.print(" | ");
-            }
-            System.out.println();
-        }
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.postgresdemo.controller;
 
 import com.example.postgresdemo.model.Customer;
 import com.example.postgresdemo.repository.CustomerRepository;
+import com.example.postgresdemo.util.QueryPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -45,5 +46,6 @@ public class CustomerController {
     public void doQuery(){
         System.out.println();
         em.createNativeQuery("Select * from customers ",Customer.class).getResultList().forEach(v->  System.out.println(v));
+        new QueryPrinter().printResult("Select * from customers ",em);
     }
 }
