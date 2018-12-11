@@ -28,6 +28,7 @@ public class ShopController {
         addShops();
         doQuery();
         doInnerJoinQuery();
+        doLeftJoinQuery();
     }
     public void addShops() {
         ArrayList<Shop> customerList= new  ArrayList<>();
@@ -44,7 +45,7 @@ public class ShopController {
 
     public void doQuery(){
         System.out.println();
-        em.createNativeQuery("Select * from shops ",Shop.class).getResultList().forEach(v->  System.out.println(v));
+        em.createNativeQuery("Select city from shops ").getResultList().forEach(v->  System.out.println(v));
     }
     public void doInnerJoinQuery()
     {
@@ -57,9 +58,34 @@ public class ShopController {
                 " ON shops.city=customers.city").getResultList();
         System.out.println();
         for (Object[] obj : listQuery) {
-            System.out.print(obj[0].toString());
-            System.out.print(" | "+obj[1].toString());
+            System.out.print(obj[0]);
+            System.out.print(" | "+obj[1]);
             System.out.println();
         }
     }
+    public void doLeftJoinQuery()
+    {
+        System.out.println();
+        System.out.println("Shops-Customers LEFT JOIN");
+
+        List<Object[]> listQuery=em.createNativeQuery(" Select shops.shop_name,customers.name" +
+                " From shops\n" +
+                " Left JOIN customers \n" +
+                " ON shops.city=customers.city").getResultList();
+        System.out.println();
+
+        for (Object[] obj : listQuery) {
+            for(int i=0;i<2;i++) {
+                if(obj[i]!=null) {
+                    System.out.print(obj[i]);
+                }
+                else{
+                    System.out.print("null");
+                }
+                System.out.print(" | ");
+            }
+            System.out.println();
+        }
+    }
+
 }
