@@ -35,6 +35,7 @@ public class ShopController {
         doLeftJoinQuery();
         doRightJoinQuery();
         doFullJoinQuery();
+        doSelfJoinQuery();
     }
     public void addShops() {
         ArrayList<Shop> customerList= new  ArrayList<>();
@@ -45,7 +46,6 @@ public class ShopController {
         customerList.add(new Shop((long) 5,"Shop5","City2",2));
         customerList.add(new Shop((long) 6,"Shop6","City3",5));
         customerList.forEach(v->shopRepository.save(v));
-
 
     }
 
@@ -102,4 +102,16 @@ public class ShopController {
 
     }
 
+    public void doSelfJoinQuery()
+    {
+        System.out.println();
+        System.out.println("Shops-Self JOIN");
+
+        printer.printResult(" Select Distinct B.city,B.shop_name" +
+                            " From shops A, shops B\n" +
+                            " Where A.city=B.city\n" +
+                            " And A.id<>B.id\n"+
+                            " Order By B.city,B.shop_name",em);
+
+    }
 }

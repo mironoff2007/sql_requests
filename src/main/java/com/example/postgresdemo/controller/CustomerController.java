@@ -35,8 +35,6 @@ public class CustomerController {
         customerList.add(new Customer((long) 5,"Customer5","City2",2));
         customerList.add(new Customer((long) 6,"Customer6"));
 
-
-
         customerList.forEach(v->customerRepository.save(v));
 
 
