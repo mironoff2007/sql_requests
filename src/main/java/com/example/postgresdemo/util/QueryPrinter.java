@@ -10,6 +10,7 @@ public class QueryPrinter {
 
     public  void printResult(String query,EntityManager em)
     {
+        System.out.println("-\n"+query+"\n-");
         StringBuilder strB=new StringBuilder(query.toLowerCase());
 
         strB=new StringBuilder(strB.substring(0,strB.indexOf("from")));
@@ -19,7 +20,6 @@ public class QueryPrinter {
        }
        else{
            List<Object[]> listQuery=em.createNativeQuery(query).getResultList();
-           System.out.println("-\n"+query+"\n-");
 
            for (Object[] obj : listQuery) {
                for(int i=0;i<n;i++) {

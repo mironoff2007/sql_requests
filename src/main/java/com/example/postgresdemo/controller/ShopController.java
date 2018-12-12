@@ -45,6 +45,8 @@ public class ShopController {
         customerList.add(new Shop((long) 4,"Shop4","City1",8));
         customerList.add(new Shop((long) 5,"Shop5","City2",2));
         customerList.add(new Shop((long) 6,"Shop6","City3",5));
+        customerList.add(new Shop((long) 7,"Shop7","City6",8));
+        customerList.add(new Shop((long) 8,"Shop8","City7",7));
         customerList.forEach(v->shopRepository.save(v));
 
     }
@@ -62,7 +64,8 @@ public class ShopController {
         printer.printResult(" Select shops.shop_name,customers.name" +
                 " From shops\n" +
                 " INNER JOIN customers \n" +
-                " ON shops.city=customers.city",em);
+                " ON shops.city=customers.city\n"+
+                " Order By shops.name,customers.name",em);
 
     }
     public void doLeftJoinQuery()
@@ -73,7 +76,8 @@ public class ShopController {
         printer.printResult(" Select shops.shop_name,customers.name" +
                 " From shops\n" +
                 " Left JOIN customers \n" +
-                " ON shops.city=customers.city",em);
+                " ON shops.city=customers.city\n"+
+                " Order By shops.name,customers.name",em);
 
     }
 
@@ -85,7 +89,8 @@ public class ShopController {
         printer.printResult(" Select shops.shop_name,customers.name,customers.city" +
                 " From shops\n" +
                 " Right JOIN customers \n" +
-                " ON shops.city=customers.city",em);
+                " ON shops.city=customers.city\n"+
+                " Order By shops.name,customers.name",em);
 
     }
 
@@ -97,8 +102,8 @@ public class ShopController {
         printer.printResult(" Select shops.shop_name,customers.name,customers.city" +
                 " From shops\n" +
                 " Full JOIN customers \n" +
-                " ON shops.city=customers.city" +
-                " Order By shops.name,customers.name",em);
+                " ON shops.city=customers.city\n" +
+                " Order By shops",em);
 
     }
 
