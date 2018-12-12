@@ -19,7 +19,7 @@ public class QueryPrinter {
        }
        else{
            List<Object[]> listQuery=em.createNativeQuery(query).getResultList();
-           System.out.println("["+query+" ]");
+           System.out.println("-\n"+query+"\n-");
 
            for (Object[] obj : listQuery) {
                for(int i=0;i<n;i++) {

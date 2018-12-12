@@ -34,6 +34,7 @@ public class ShopController {
         doInnerJoinQuery();
         doLeftJoinQuery();
         doRightJoinQuery();
+        doFullJoinQuery();
     }
     public void addShops() {
         ArrayList<Shop> customerList= new  ArrayList<>();
@@ -79,12 +80,25 @@ public class ShopController {
     public void doRightJoinQuery()
     {
         System.out.println();
-        System.out.println("Shops-Customers LEFT JOIN");
+        System.out.println("Shops-Customers Right JOIN");
 
         printer.printResult(" Select shops.shop_name,customers.name,customers.city" +
                 " From shops\n" +
                 " Right JOIN customers \n" +
                 " ON shops.city=customers.city",em);
+
+    }
+
+    public void doFullJoinQuery()
+    {
+        System.out.println();
+        System.out.println("Shops-Customers FULL JOIN");
+
+        printer.printResult(" Select shops.shop_name,customers.name,customers.city" +
+                " From shops\n" +
+                " Full JOIN customers \n" +
+                " ON shops.city=customers.city" +
+                " Order By shops.name,customers.name",em);
 
     }
 
