@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class ShopController {
@@ -28,11 +27,13 @@ public class ShopController {
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
         printer = new QueryPrinter();
+        System.out.println();
         System.out.println("ShopController ready");
         addShops();
         doQuery();
         doInnerJoinQuery();
         doLeftJoinQuery();
+        doRightJoinQuery();
     }
     public void addShops() {
         ArrayList<Shop> customerList= new  ArrayList<>();
@@ -71,6 +72,18 @@ public class ShopController {
         printer.printResult(" Select shops.shop_name,customers.name" +
                 " From shops\n" +
                 " Left JOIN customers \n" +
+                " ON shops.city=customers.city",em);
+
+    }
+
+    public void doRightJoinQuery()
+    {
+        System.out.println();
+        System.out.println("Shops-Customers LEFT JOIN");
+
+        printer.printResult(" Select shops.shop_name,customers.name,customers.city" +
+                " From shops\n" +
+                " Right JOIN customers \n" +
                 " ON shops.city=customers.city",em);
 
     }
