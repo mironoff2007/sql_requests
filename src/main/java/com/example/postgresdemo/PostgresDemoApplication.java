@@ -14,8 +14,6 @@ public class PostgresDemoApplication {
     @Autowired CustomerController customerController;
 	public static void main(String[] args) {
 		SpringApplication.run(PostgresDemoApplication.class, args);
-
-
 	}
 
 
