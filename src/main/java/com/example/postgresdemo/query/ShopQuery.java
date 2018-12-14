@@ -66,7 +66,7 @@ public class ShopQuery {
                             " From shops\n" +
                             " INNER JOIN customers \n" +
                             " ON shops.city=customers.city\n"+
-                            " Order By shops.name,customers.name",em);
+                            " Order By shops.shop_name,customers.name",em);
 
     }
     public void doLeftJoinQuery()
@@ -78,7 +78,7 @@ public class ShopQuery {
                             " From shops\n" +
                             " Left JOIN customers \n" +
                             " ON shops.city=customers.city\n"+
-                            " Order By shops.name,customers.name",em);
+                            " Order By shops.shop_name,customers.name",em);
 
     }
 
@@ -91,7 +91,7 @@ public class ShopQuery {
                             " From shops\n" +
                             " Right JOIN customers \n" +
                             " ON shops.city=customers.city\n"+
-                            " Order By shops.name,customers.name",em);
+                            " Order By shops.shop_name,customers.name",em);
 
     }
 
