@@ -53,7 +53,8 @@ public class ShopController {
 
     public void doQuery(){
         System.out.println();
-        printer.printResult("Select city from shops ",em);
+        System.out.println("Select * from shops");
+        em.createNativeQuery("Select * from shops ",Shop.class).getResultList().forEach(v->  System.out.println(v));
 
     }
     public void doInnerJoinQuery()
@@ -61,11 +62,11 @@ public class ShopController {
         System.out.println();
         System.out.println("Shops-Customers INNER JOIN");
 
-        printer.printResult(" Select shops.shop_name,customers.name" +
-                " From shops\n" +
-                " INNER JOIN customers \n" +
-                " ON shops.city=customers.city\n"+
-                " Order By shops.name,customers.name",em);
+        printer.printResult(" Select shops.shop_name,customers.name\n" +
+                            " From shops\n" +
+                            " INNER JOIN customers \n" +
+                            " ON shops.city=customers.city\n"+
+                            " Order By shops.name,customers.name",em);
 
     }
     public void doLeftJoinQuery()
@@ -73,11 +74,11 @@ public class ShopController {
         System.out.println();
         System.out.println("Shops-Customers LEFT JOIN");
 
-        printer.printResult(" Select shops.shop_name,customers.name" +
-                " From shops\n" +
-                " Left JOIN customers \n" +
-                " ON shops.city=customers.city\n"+
-                " Order By shops.name,customers.name",em);
+        printer.printResult(" Select shops.shop_name,customers.name\n" +
+                            " From shops\n" +
+                            " Left JOIN customers \n" +
+                            " ON shops.city=customers.city\n"+
+                            " Order By shops.name,customers.name",em);
 
     }
 
@@ -86,11 +87,11 @@ public class ShopController {
         System.out.println();
         System.out.println("Shops-Customers Right JOIN");
 
-        printer.printResult(" Select shops.shop_name,customers.name,customers.city" +
-                " From shops\n" +
-                " Right JOIN customers \n" +
-                " ON shops.city=customers.city\n"+
-                " Order By shops.name,customers.name",em);
+        printer.printResult(" Select shops.shop_name,customers.name,customers.city\n" +
+                            " From shops\n" +
+                            " Right JOIN customers \n" +
+                            " ON shops.city=customers.city\n"+
+                            " Order By shops.name,customers.name",em);
 
     }
 
@@ -99,11 +100,11 @@ public class ShopController {
         System.out.println();
         System.out.println("Shops-Customers FULL JOIN");
 
-        printer.printResult(" Select shops.shop_name,customers.name,customers.city" +
-                " From shops\n" +
-                " Full JOIN customers \n" +
-                " ON shops.city=customers.city\n" +
-                " Order By shops",em);
+        printer.printResult(" Select shops.shop_name,customers.name,customers.city\n" +
+                            " From shops\n" +
+                            " Full JOIN customers \n" +
+                            " ON shops.city=customers.city\n" +
+                            " Order By shops",em);
 
     }
 
@@ -112,7 +113,7 @@ public class ShopController {
         System.out.println();
         System.out.println("Shops-Self JOIN");
 
-        printer.printResult(" Select Distinct B.city,B.shop_name" +
+        printer.printResult(" Select  B.city,B.shop_name\n" +
                             " From shops A, shops B\n" +
                             " Where A.city=B.city\n" +
                             " And A.id<>B.id\n"+

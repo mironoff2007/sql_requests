@@ -30,6 +30,7 @@ public class CustomerController {
         addCustomer();
         doQuery();
         doQueryCustomersWOShops();
+        doQueryAllCities();
     }
     public void addCustomer() {
         ArrayList<Customer> customerList= new  ArrayList<>();
@@ -40,7 +41,9 @@ public class CustomerController {
         customerList.add(new Customer((long) 5,"Customer5","City2",2));
         customerList.add(new Customer((long) 6,"Customer6"));
         customerList.add(new Customer((long) 7,"Customer7","City4",2));
-        customerList.add(new Customer((long) 8,"Customer5","City5",2));
+        customerList.add(new Customer((long) 8,"Customer8","City5",2));
+        customerList.add(new Customer((long) 9,"Customer9","City11",2));
+        customerList.add(new Customer((long) 10,"Customer10","City12",2));
 
         customerList.forEach(v->customerRepository.save(v));
     }
@@ -60,6 +63,16 @@ public class CustomerController {
                             " ON C.city=S.city\n" +
                             " Where C.city IS NUll\n" +
                             " Order By C.name",em);
+    }
+
+    public void doQueryAllCities() {
+        System.out.println();
+        System.out.println("All cities");
+
+        printer.printResult(" Select city From Customers\n" +
+                            " Union\n" +
+                            " Select city From Shops\n" +
+                            " Order By city",em);
     }
 
 }
