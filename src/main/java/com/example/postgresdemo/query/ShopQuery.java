@@ -1,4 +1,4 @@
-package com.example.postgresdemo.controller;
+package com.example.postgresdemo.query;
 
 import com.example.postgresdemo.model.Shop;
 import com.example.postgresdemo.repository.ShopRepository;
@@ -6,14 +6,14 @@ import com.example.postgresdemo.util.QueryPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 
-@RestController
-public class ShopController {
+@Component
+public class ShopQuery {
 
     @Autowired
     private ShopRepository shopRepository;
