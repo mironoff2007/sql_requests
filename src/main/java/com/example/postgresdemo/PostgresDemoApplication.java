@@ -12,8 +12,6 @@ public class PostgresDemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PostgresDemoApplication.class, args);
-
-
 	}
 
 
